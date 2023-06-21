@@ -1,2 +1,2 @@
-INSERT INTO tb_cozinhas  (nome) VALUES('Tailandesa')
-INSERT INTO tb_cozinhas  (nome) VALUES('Indiana')
+INSERT INTO cozinha (nome) VALUES('Tailandesa')
+INSERT INTO cozinha  (nome) VALUES('Indiana')

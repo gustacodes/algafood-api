@@ -15,6 +15,6 @@ public class CadastroCozinha {
     private EntityManager manager;
 
     public List<Cozinha> listar() {
-        return manager.createQuery("from cozinha", Cozinha.class).getResultList();
+        return manager.createQuery("from Cozinha", Cozinha.class).getResultList();
     }
 }

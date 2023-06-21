@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_cozinhas")
 public class Cozinha {
 
     @Id
