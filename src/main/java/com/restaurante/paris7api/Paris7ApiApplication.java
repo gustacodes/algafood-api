@@ -1,13 +1,13 @@
-package com.restaurante.paris7;
+package com.restaurante.paris7api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Paris7Application {
+public class Paris7ApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Paris7Application.class, args);
+		SpringApplication.run(Paris7ApiApplication.class, args);
 	}
 
 }
