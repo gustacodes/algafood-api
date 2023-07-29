@@ -1,4 +1,4 @@
-package com.restaurante.paris7api;
+package com.algaworks.algafood;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
