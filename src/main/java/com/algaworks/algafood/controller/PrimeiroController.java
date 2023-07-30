@@ -10,7 +10,7 @@ public class PrimeiroController {
     @GetMapping("/hello")
     @ResponseBody
     public String hello() {
-        return "Olsalsalsla!";
+        return "Ola";
     }
 
 }
