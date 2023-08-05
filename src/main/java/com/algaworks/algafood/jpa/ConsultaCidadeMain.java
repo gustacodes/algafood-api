@@ -10,7 +10,7 @@ import com.algaworks.algafood.Paris7ApiApplication;
 import com.algaworks.algafood.domain.model.Cidade;
 import com.algaworks.algafood.domain.repository.CidadeRepository;
 
-public class ConsultaEstadoMain {
+public class ConsultaCidadeMain {
     public static void main(String[] args) {
         
         ApplicationContext applicationContext = new SpringApplicationBuilder(Paris7ApiApplication.class)
