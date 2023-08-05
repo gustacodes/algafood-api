@@ -19,7 +19,7 @@ public class CidadeRepositoryImpl implements CidadeRepository {
 
     @Override
     public List<Cidade> listar() {
-        return manager.createQuery("from Estado", Cidade.class).getResultList();   
+        return manager.createQuery("from Cidade", Cidade.class).getResultList();   
     }
 
     @Override

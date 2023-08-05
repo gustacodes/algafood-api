@@ -1,4 +1,4 @@
-package com.algaworks.algafood.jpa;
+/*package com.algaworks.algafood.jpa;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -16,10 +16,10 @@ public class ExclusaoCozinhaMain {
 
         CozinhaRepository cadastroCozinha = applicationContext.getBean(CozinhaRepository.class);
 
-        //Cozinha cozinha = new Cozinha();
-        //cozinha.setId(1L);
+        Cozinha cozinha = new Cozinha();
+        cozinha.setId(1L);
 
-        //cadastroCozinha.remover(cozinha);
+        cadastroCozinha.remover(cozinha);
 
     }
-}
+}*/
