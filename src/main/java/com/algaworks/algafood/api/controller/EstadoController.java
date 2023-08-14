@@ -2,10 +2,14 @@ package com.algaworks.algafood.api.controller;
 
 import java.util.List;
 
+import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
+import com.algaworks.algafood.domain.model.Cidade;
+import com.algaworks.algafood.domain.repository.CidadeRepository;
+import com.algaworks.algafood.domain.service.CadastroEstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.algaworks.algafood.domain.model.Estado;
 import com.algaworks.algafood.domain.repository.EstadoRepository;
@@ -15,11 +19,46 @@ import com.algaworks.algafood.domain.repository.EstadoRepository;
 public class EstadoController {
 
     @Autowired
-    private EstadoRepository estadoRepository;
+    private CadastroEstadoService cadastroEstadoService;
+
+    @Autowired
+    private CidadeRepository cidadeRepository;
 
     @GetMapping
-    public List<Estado> listar() {
-        return estadoRepository.listar();
+    public ResponseEntity<List<Estado>> listar() {
+        List<Estado> estado = cadastroEstadoService.listar();
+        return ResponseEntity.ok().body(estado);
     }
-    
+
+    @PostMapping
+    ResponseEntity<Estado> salvar(@RequestBody Estado estado) {
+        Estado es = cadastroEstadoService.salvar(estado);
+        return ResponseEntity.status(HttpStatus.CREATED).body(es);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> remover(@PathVariable Long id) {
+
+        try {
+
+            Estado estado = cadastroEstadoService.buscar(id);
+            Cidade cidade = cidadeRepository.buscar(estado.getId());
+
+            if (cidade.getEstado().getId() != null) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Este estado tem um cidade");
+            }
+
+            if (estado != null) {
+                cadastroEstadoService.excluir(estado);
+
+                return ResponseEntity.noContent().build();
+            }
+
+        } catch (EntidadeNaoEncontradaException e) {
+
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
 }

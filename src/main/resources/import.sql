@@ -23,3 +23,9 @@ INSERT INTO estado (id, nome) VALUES (2, 'Pernambuco')
 INSERT INTO cidade (nome, estado_id) VALUES ('Recife', 2)
 INSERT INTO cidade (nome, estado_id) VALUES ('Sertania', 2)
 INSERT INTO cidade (nome, estado_id) VALUES ('Garanhuns', 2)
+
+INSERT INTO estado (id, nome) VALUES (3, 'Rio Grande do Norte')
+
+INSERT INTO cidade (nome, estado_id) VALUES ('Caicó', 3)
+INSERT INTO cidade (nome, estado_id) VALUES ('Mossoró', 3)
+INSERT INTO cidade (nome, estado_id) VALUES ('Natal', 3)
