@@ -5,6 +5,7 @@ import java.util.List;
 import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,6 @@ public class CadastroRestauranteServices {
         Restaurante restaurante = restauranteRepository.buscar(id);
         return restaurante;
     }
-    
+
+
 }
