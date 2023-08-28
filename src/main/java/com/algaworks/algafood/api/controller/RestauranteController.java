@@ -1,6 +1,7 @@
 package com.algaworks.algafood.api.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class RestauranteController {
 
         try {
             restaurante = cadastroRestauranteServices.salvar(restaurante);
-
             return ResponseEntity.status(HttpStatus.CREATED).body(restaurante);
 
         } catch (EntidadeNaoEncontradaException e) {
@@ -55,12 +55,9 @@ public class RestauranteController {
 
             Restaurante restauranteAtual = cadastroRestauranteServices.buscar(id);
 
-            if(restauranteAtual != null) {
-
-            restaurante = cadastroRestauranteServices.salvar(restaurante);
-
-            return ResponseEntity.ok().body(restaurante);
-
+            if (restauranteAtual != null) {
+                restaurante = cadastroRestauranteServices.salvar(restaurante);
+                return ResponseEntity.ok().body(restaurante);
             }
 
             return ResponseEntity.notFound().build();
@@ -69,6 +66,26 @@ public class RestauranteController {
         } catch (EntidadeNaoEncontradaException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> atualizaParcial(@PathVariable long id, @RequestBody Map<String, Object> campos) {
+
+        Restaurante restauranteAtual = cadastroRestauranteServices.buscar(id);
+
+        if(restauranteAtual == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        merge(campos, restauranteAtual);
+
+        return atualizar(id, restauranteAtual);
+    }
+
+    private void merge(Map<String, Object> camposOrigem, Restaurante restauranteDestino) {
+        camposOrigem.forEach((nomePropriedade, valorPropriedade) -> {
+            System.out.println(nomePropriedade + " = " + valorPropriedade);
+        });
     }
 
 }
