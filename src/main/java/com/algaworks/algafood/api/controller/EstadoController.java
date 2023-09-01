@@ -1,6 +1,7 @@
 package com.algaworks.algafood.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.model.Cidade;
@@ -42,9 +43,9 @@ public class EstadoController {
         try {
 
             Estado estado = cadastroEstadoService.buscar(id);
-            Cidade cidade = cidadeRepository.buscar(estado.getId());
+            Optional<Cidade> cidade = cidadeRepository.findById(estado.getId());
 
-            if (cidade.getEstado().getId() != null) {
+            if (cidade.get().getEstado().getId() != null) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("Este estado tem um cidade");
             }
 

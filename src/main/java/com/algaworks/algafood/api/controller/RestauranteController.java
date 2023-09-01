@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.algaworks.algafood.domain.exception.EntidadeNaoEncontradaException;
+import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.repository.RestauranteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,12 @@ public class RestauranteController {
 
     @Autowired
     private CadastroRestauranteServices cadastroRestauranteServices;
+
+    @Autowired
+    private CozinhaRepository cozinhaRepository;
+
+    @Autowired
+    private RestauranteRepository restauranteRepository;
 
     @PostMapping
     public ResponseEntity<?> adicionar(@RequestBody Restaurante restaurante) {
@@ -40,7 +48,7 @@ public class RestauranteController {
         return cadastroRestauranteServices.listar();
     }
 
-    @GetMapping("/restaurante/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Restaurante> buscar(@PathVariable Long id) {
         Restaurante restaurante = cadastroRestauranteServices.buscar(id);
 

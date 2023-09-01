@@ -30,16 +30,16 @@ public class CadastroRestauranteServices {
 
         restaurante.setCozinha(cozinha);
 
-        return restauranteRepository.salvar(restaurante);
+        return restauranteRepository.save(restaurante);
     }
 
     public List<Restaurante> listar() {
-        return restauranteRepository.listar();
+        return restauranteRepository.findAll();
     }
 
     public Restaurante buscar(Long id) {
-        Restaurante restaurante = restauranteRepository.buscar(id);
-        return restaurante;
+        Optional<Restaurante> restaurante = restauranteRepository.findById(id);
+        return restaurante.get();
     }
 
 }

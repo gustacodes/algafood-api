@@ -16,15 +16,15 @@ public class CadastroEstadoService {
     private EstadoRepository estadoRepository;
 
     public Estado salvar(Estado estado) {
-        return estadoRepository.salvar(estado);
+        return estadoRepository.save(estado);
     }
 
     public List<Estado> listar() {
-        return estadoRepository.listar();
+        return estadoRepository.findAll();
     }
 
     public Estado buscar(Long id) {
-        return estadoRepository.buscar(id);
+        return estadoRepository.findById(id).get();
     }
 
     public void excluir(Estado estado) {
@@ -33,6 +33,6 @@ public class CadastroEstadoService {
             throw new EntidadeNaoEncontradaException("Estado não encontrado para exclusão");
         }
 
-        estadoRepository.remover(estado);
+        estadoRepository.delete(estado);
     }
 }
