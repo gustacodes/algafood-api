@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RestauranteRepository extends JpaRepository<Restaurante, Long> {
 
-    List<Restaurante> findByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
-    @Query("from Restaurante WHERE nome like %:nome% and cozinha.id = :id")
+    List<Restaurante> findByTaxaFreteBetween(BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
+    //@Query("from Restaurante WHERE nome like %:nome% and cozinha.id = :id")
     List<Restaurante> consultarPorNome(String nome, Long id);
+    List<Restaurante> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
 }
