@@ -46,7 +46,7 @@ public class CozinhaController {
     public ResponseEntity<Cozinha> buscar(@PathVariable Long id) {
         Optional<Cozinha> cozinha = cozinhaRepository.findById(id);
 
-        if(cozinha.isPresent()) {
+        if (cozinha.isPresent()) {
             return ResponseEntity.ok(cozinha.get());
         }
 
@@ -57,9 +57,9 @@ public class CozinhaController {
     public ResponseEntity<Cozinha> atualizar(@PathVariable Long id, @RequestBody Cozinha cozinha) {
         Optional<Cozinha> cozinhaAtual = cozinhaRepository.findById(id);
 
-        if(cozinhaAtual.isPresent()) {
+        if (cozinhaAtual.isPresent()) {
             BeanUtils.copyProperties(cozinha, cozinhaAtual.get(), "id");
-    
+
             Cozinha cozinhaSalva = cadastroCozinhaService.salvar(cozinhaAtual.get());
             return ResponseEntity.ok(cozinhaSalva);
         }
@@ -73,16 +73,16 @@ public class CozinhaController {
 
         try {
 
-            cadastroCozinhaService.excluir(id);        
+            cadastroCozinhaService.excluir(id);
             return ResponseEntity.noContent().build();
-            
+
         } catch (EntidadeNaoEncontradaException e) {
             return ResponseEntity.notFound().build();
 
         } catch (EntidadeEmUsoException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-        
+
     }
-    
+
 }

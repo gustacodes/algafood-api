@@ -15,7 +15,7 @@ import java.util.List;
 public class TesteController {
 
     @Autowired
-    private CozinhaRepository  cozinhaRepository;
+    private CozinhaRepository cozinhaRepository;
 
     @Autowired
     private RestauranteRepository restauranteRepository;
